@@ -1,16 +1,14 @@
-<div class="app-container">
+<!-- <div class="app-container"> -->
   <div class="score-tracker-container">
     <!-- <h2>{{ sport }}</h2> -->
-    <div class="scores">
-      <div class="team" [class.leading]="isLeading('teamA')">
-        <h3>Team A</h3>
-        <button (click)="addScore('teamA')">+1</button>
-        <p>{{ scores.teamA }}</p>
+    <div class="score-screen">
+      <div class="score-zone left" (click)="addScore('teamA')">
+        <div class="team-label">Team A</div>
+        <div class="score-display">{{ scores.teamA }}</div>
       </div>
-      <div class="team" [class.leading]="isLeading('teamB')">
-        <h3>Team B</h3>
-        <button (click)="addScore('teamB')">+1</button>
-        <p>{{ scores.teamB }}</p>
+      <div class="score-zone right" (click)="addScore('teamB')">
+        <div class="team-label">Team B</div>
+        <div class="score-display">{{ scores.teamB }}</div>
       </div>
     </div>
     <button class="end" (click)="endQuarter()">End {{ sport === 'Basketball' ? 'Quarter' : 'Set' }}</button>
@@ -25,4 +23,4 @@
       </div>
     }
   </div>
-</div>
+<!-- </div> -->
