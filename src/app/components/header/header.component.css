@@ -1,0 +1,31 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #ddd;
+}
+
+.team-label {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.sport-selector {
+  flex: 1;
+  text-align: center;
+}
+
+.sport-selector select {
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  text-transform: capitalize;
+}

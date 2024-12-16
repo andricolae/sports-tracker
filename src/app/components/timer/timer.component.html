@@ -1,6 +1,6 @@
 <div class="app-container">
   <div class="timer-container">
-    <select
+    <!-- <select
         [(ngModel)]="selectedSport"
         (change)="changeSport($any($event.target).value)"
         [attr.key]="selectedSport">
@@ -8,7 +8,7 @@
       <option value="Basketball">Basketball</option>
       <option value="Volleyball">Volleyball</option>
       <option value="Tennis">Tennis</option>
-    </select>
+    </select> -->
     <div class="timer-display">{{ formattedTime }}</div>
     <div class="timer-buttons">
       @if (selectedSport !== 'default') {
