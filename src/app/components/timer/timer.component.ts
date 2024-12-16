@@ -18,10 +18,6 @@ export class TimerComponent {
   selectedSport: string = 'default'; // Default sport
 
   constructor(private appDataService: AppDataService) {
-<<<<<<< HEAD
-=======
-    // Subscribe to changes in the selected sport
->>>>>>> 4df1f36c74e5acde3803951ea108b04cdd8371c7
     this.appDataService.sportChanged$.subscribe((newSport) => {
       this.selectedSport = newSport;
     });
