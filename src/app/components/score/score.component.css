@@ -1,35 +1,10 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #f5f5f5;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* min-height: 100vh; */
-}
-
 .score-tracker-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
   padding: 20px;
   border-radius: 10px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-}
-
-h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .scores {
@@ -57,37 +32,12 @@ h2 {
 }
 
 .team button {
-  font-size: 1.5rem;
-  padding: 10px 20px;
   background-color: #007bff;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .team button:hover {
   background-color: #0056b3;
-}
-
-button {
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  background-color: #218838;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
 }
 
 .history {
@@ -98,12 +48,6 @@ button:hover {
 .history h4 {
   font-size: 1.5rem;
   color: #333;
-  margin-bottom: 10px;
-}
-
-.history ul {
-  list-style-type: none;
-  padding: 0;
 }
 
 .history li {
@@ -117,4 +61,12 @@ button:hover {
   border: 2px solid #28a745;
   border-radius: 5px;
   transition: all 0.3s;
+}
+
+.end {
+  background-color: #47bd62;
+}
+
+.end:hover {
+  background-color: #0ba32c;
 }
