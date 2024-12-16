@@ -18,13 +18,23 @@ export class TimerComponent {
   selectedSport: string = 'default';
 
   timeoutRunning: boolean = false;
-  timeoutTime: number = 60;
+  timeoutTime: number = 30;
   timeoutInterval: any;
+  timeoutDurations: {[key: string]: number} = {
+    Basketball: 75,
+    Tennis: 180,
+    Volleyball: 75,
+  };
 
   constructor(private appDataService: AppDataService) {
     this.appDataService.sportChanged$.subscribe((newSport) => {
       this.selectedSport = newSport;
+      this.updateTimeoutTime();
     });
+  }
+
+  updateTimeoutTime(): void {
+    this.timeoutTime = this.timeoutDurations[this.selectedSport] || 30;
   }
 
   start(): void {
@@ -51,12 +61,11 @@ export class TimerComponent {
     this.running = false;
     this.laps = [];
     this.appDataService.setTimerRunning(false);
+    this.updateTimeoutTime();
   }
 
   startTimeout(): void {
     this.timeoutRunning = true;
-    this.timeoutTime = 60;
-
     this.timeoutInterval = setInterval(() => {
       this.timeoutTime--;
       if (this.timeoutTime <= 0) {
@@ -68,7 +77,8 @@ export class TimerComponent {
   stopTimeout(): void {
     clearInterval(this.timeoutInterval);
     this.timeoutRunning = false;
-    this.start(); // Resume the main timer
+    this.updateTimeoutTime();
+    this.start();
   }
 
   get formattedTime(): string {
@@ -87,10 +97,4 @@ export class TimerComponent {
   private pad(value: number): string {
     return value < 10 ? `0${value}` : value.toString();
   }
-
-  /*        TIMEOUT
-      basketball -> 75 sec
-      tennis     -> 180 sec
-      volleyball -> 75 sec
-  */
 }
