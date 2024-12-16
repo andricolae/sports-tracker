@@ -1,0 +1,28 @@
+<div class="app-container">
+  <div class="score-tracker-container">
+    <!-- <h2>{{ sport }}</h2> -->
+    <div class="scores">
+      <div class="team" [class.leading]="isLeading('teamA')">
+        <h3>Team A</h3>
+        <button (click)="addScore('teamA')">+1</button>
+        <p>{{ scores.teamA }}</p>
+      </div>
+      <div class="team" [class.leading]="isLeading('teamB')">
+        <h3>Team B</h3>
+        <button (click)="addScore('teamB')">+1</button>
+        <p>{{ scores.teamB }}</p>
+      </div>
+    </div>
+    <button (click)="endQuarter()">End {{ sport === 'Basketball' ? 'Quarter' : 'Set' }}</button>
+    @if (quarters.length > 0) {
+      <div class="history">
+        <h4>Score History:</h4>
+        <ul>
+          @for (quarter of quarters; track quarters) {
+            <li>Difference: {{quarter}}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</div>
