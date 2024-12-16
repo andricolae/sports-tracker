@@ -26,6 +26,7 @@ export class TimerComponent {
   start(): void {
     if (!this.running) {
       this.running = true;
+      this.appDataService.setTimerRunning(true);
       this.interval = setInterval(() => {
         this.time++;
       }, 1000);
@@ -44,6 +45,7 @@ export class TimerComponent {
     this.time = 0;
     this.running = false;
     this.laps = [];
+    this.appDataService.setTimerRunning(false);
   }
 
   recordLap(): void {

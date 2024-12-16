@@ -15,6 +15,7 @@ export class HeaderComponent {
   teamA: string = 'Team A';
   teamB: string = 'Team B';
   inputLocked: boolean = false;
+  sportSelectorLocked: boolean = false;
 
   constructor(private appDataService: AppDataService) {}
 
@@ -23,9 +24,16 @@ export class HeaderComponent {
       this.selectedSport = sport;
       this.inputLocked = sport !== 'default';
     });
+
+    this.appDataService.timerRunning$.subscribe((isRunning) => {
+      this.sportSelectorLocked = isRunning;
+    });
   }
 
   onSportChange(newSport: string): void {
+    if (!this.sportSelectorLocked) {
+      this.appDataService.changeSport(newSport);
+    }
     this.selectedSport = newSport;
     this.sportChanged.emit(newSport);
     this.appDataService.changeSport(newSport);

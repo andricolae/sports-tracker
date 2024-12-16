@@ -8,7 +8,8 @@
   />
 
   <div class="sport-selector">
-    <select (change)="onSportChange($any($event.target).value)">
+    <select (change)="onSportChange($any($event.target).value)"
+      [disabled]="sportSelectorLocked">
       <option value="default">Choose Sport!</option>
       <option value="Basketball">Basketball</option>
       <option value="Volleyball">Volleyball</option>
