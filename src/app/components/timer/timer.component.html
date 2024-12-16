@@ -12,12 +12,17 @@
     <div class="timer-display">{{ formattedTime }}</div>
     <div class="timer-buttons">
       @if (selectedSport !== 'default') {
-        <button (click)="start()">Start</button>
-        <button (click)="pause()">Pause</button>
-        <button (click)="reset()">Reset</button>
+        <button (click)="start()" [disabled]="timeoutRunning">Start</button>
+        <button (click)="pause()" [disabled]="timeoutRunning || !running">Time Out</button>
       }
+      <!-- <button (click)="reset()" [disabled]="running">Reset</button> -->
       <!-- <button (click)="recordLap()">Lap</button> -->
     </div>
+    @if (timeoutRunning) {
+      <div class="timeout-display">
+        Timeout: {{ formattedTimeoutTime }}
+      </div>
+    }
     <!-- @if (laps.length > 0) {
       <div class="laps-container">
         <h3>Laps:</h3>
