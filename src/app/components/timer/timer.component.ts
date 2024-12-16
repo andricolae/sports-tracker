@@ -18,6 +18,7 @@ export class TimerComponent {
   selectedSport: string = 'default';
 
   constructor(private appDataService: AppDataService) {}
+
   changeSport(newSport: string): void {
     this.appDataService.changeSport(newSport);
   }

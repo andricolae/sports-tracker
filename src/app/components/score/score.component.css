@@ -88,3 +88,13 @@ h2 {
   text-align: center;
   pointer-events: none;
 }
+
+.score-zone.disabled {
+  pointer-events: none;
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.score-zone.disabled .score-display {
+  color: #6c757d;
+}

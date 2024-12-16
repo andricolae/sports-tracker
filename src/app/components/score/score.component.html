@@ -2,16 +2,22 @@
   <div class="score-tracker-container">
     <!-- <h2>{{ sport }}</h2> -->
     <div class="score-screen">
-      <div class="score-zone left" (click)="addScore('teamA')">
+      <div class="score-zone left"
+        [class.disabled]="sport === 'default'"
+        (click)="addScore('teamA')">
         <div class="team-label">Team A</div>
         <div class="score-display">{{ scores.teamA }}</div>
       </div>
-      <div class="score-zone right" (click)="addScore('teamB')">
+      <div class="score-zone right"
+        [class.disabled]="sport === 'default'"
+        (click)="addScore('teamB')">
         <div class="team-label">Team B</div>
         <div class="score-display">{{ scores.teamB }}</div>
       </div>
     </div>
-    <button class="end" (click)="endQuarter()">End {{ sport === 'Basketball' ? 'Quarter' : 'Set' }}</button>
+    @if (sport !== 'default') {
+      <button class="end" (click)="endQuarter()">End {{ sport === 'Basketball' ? 'Quarter' : 'Set' }}</button>
+    }
     @if (quarters.length > 0) {
       <div class="history">
         <h4>Score History:</h4>

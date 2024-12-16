@@ -10,7 +10,7 @@ import { AppDataService } from '../../services/app-data.service';
   styleUrl: './score.component.css',
 })
 export class ScoreTrackerComponent {
-  sport: string = 'Basketball'; // Default sport
+  sport: string = 'default';
   scores = { teamA: 0, teamB: 0 };
   quarters: number[] = [];
 
