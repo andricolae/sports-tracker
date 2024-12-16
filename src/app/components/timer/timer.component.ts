@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 import { AppDataService } from '../../services/app-data.service';
 import { FormsModule } from '@angular/forms';
 
@@ -17,10 +17,10 @@ export class TimerComponent {
   laps: string[] = [];
   selectedSport: string = 'default';
 
-  constructor(private appDataService: AppDataService) {}
-
-  changeSport(newSport: string): void {
-    this.appDataService.changeSport(newSport);
+  constructor(private appDataService: AppDataService) {
+    this.appDataService.sportChanged$.subscribe((newSport) => {
+      this.selectedSport = newSport;
+    });
   }
 
   start(): void {
@@ -44,8 +44,6 @@ export class TimerComponent {
     this.time = 0;
     this.running = false;
     this.laps = [];
-    this.selectedSport = 'default';
-    this.changeSport('default');
   }
 
   recordLap(): void {
