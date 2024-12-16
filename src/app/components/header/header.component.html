@@ -1,4 +1,5 @@
 <div class="header-container">
+<<<<<<< HEAD
   <input
     type="text"
     [(ngModel)]="teamA"
@@ -7,6 +8,11 @@
     placeholder="Enter Team A Name"
   />
 
+=======
+  <div class="team-label">
+    {{ teamA }}
+  </div>
+>>>>>>> 4df1f36c74e5acde3803951ea108b04cdd8371c7
   <div class="sport-selector">
     <select (change)="onSportChange($any($event.target).value)">
       <option value="default">Choose Sport!</option>
@@ -15,6 +21,7 @@
       <option value="Tennis">Tennis</option>
     </select>
   </div>
+<<<<<<< HEAD
 
   <input
   type="text"
@@ -23,4 +30,9 @@
   class="team-input"
   placeholder="Enter Team B Name"
 />
+=======
+  <div class="team-label">
+    {{ teamB }}
+  </div>
+>>>>>>> 4df1f36c74e5acde3803951ea108b04cdd8371c7
 </div>

@@ -7,6 +7,7 @@
   border-bottom: 2px solid #ddd;
 }
 
+<<<<<<< HEAD
 .team-input {
   font-size: 1.2rem;
   padding: 5px 10px;
@@ -21,6 +22,19 @@
 .team-input:disabled {
   background-color: #e9ecef;
   cursor: not-allowed;
+=======
+.team-label {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.sport-selector {
+  flex: 1;
+  text-align: center;
+>>>>>>> 4df1f36c74e5acde3803951ea108b04cdd8371c7
 }
 
 .sport-selector select {
@@ -30,4 +44,8 @@
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+<<<<<<< HEAD
+=======
+  text-transform: capitalize;
+>>>>>>> 4df1f36c74e5acde3803951ea108b04cdd8371c7
 }
