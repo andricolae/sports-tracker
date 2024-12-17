@@ -11,13 +11,18 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent {
-  time: number = 0;
+  time: number = 10 * 60;
   interval: any;
+  breakTime: number = 0;
   running: boolean = false;
   laps: string[] = [];
   selectedSport: string = 'default';
-
+  quarter: number = 1;
+  breakInterval: any;
+  maxTimeouts: number = 7;
+  usedTimeouts: number = 0;
   timeoutRunning: boolean = false;
+  breakRunning: boolean = false;
   timeoutTime: number = 30;
   timeoutInterval: any;
   timeoutDurations: {[key: string]: number} = {
@@ -38,12 +43,23 @@ export class TimerComponent {
   }
 
   start(): void {
-    if (!this.running) {
-      this.running = true;
+    if (!this.running && !this.breakRunning && !this.timeoutRunning) {      this.running = true;
       this.appDataService.setTimerRunning(true);
       this.interval = setInterval(() => {
-        this.time++;
+        this.time--;
+        if (this.time <= 0) {
+          this.endQuarter();
+        }
       }, 1000);
+    }
+  }
+
+  pauseForTimeout(): void {
+    if (this.running && this.usedTimeouts < this.maxTimeouts) {
+      clearInterval(this.interval);
+      this.running = false;
+      this.startTimeout();
+      this.usedTimeouts++;
     }
   }
 
@@ -56,12 +72,19 @@ export class TimerComponent {
   }
 
   reset(): void {
-    clearInterval(this.interval);
-    this.time = 0;
-    this.running = false;
-    this.laps = [];
     this.appDataService.setTimerRunning(false);
     this.updateTimeoutTime();
+    clearInterval(this.interval);
+    clearInterval(this.breakInterval);
+    clearInterval(this.timeoutInterval);
+    this.time = 10 * 60;
+    this.breakTime = 0;
+    this.timeoutTime = 60;
+    this.quarter = 1;
+    this.running = false;
+    this.breakRunning = false;
+    this.timeoutRunning = false;
+    this.usedTimeouts = 0;
   }
 
   startTimeout(): void {
@@ -81,6 +104,40 @@ export class TimerComponent {
     this.start();
   }
 
+  endQuarter(): void {
+    clearInterval(this.interval);
+    this.running = false;
+
+    if (this.quarter === 2) {
+      this.startBreak(15 * 60);
+    } else if (this.quarter < 4) {
+      this.startBreak(2 * 60);
+    } else {
+      console.log('Finish Game');
+      return;
+    }
+
+    this.quarter++;
+  }
+
+  startBreak(duration: number): void {
+    this.breakTime = duration;
+    this.breakRunning = true;
+    this.breakInterval = setInterval(() => {
+      this.breakTime--;
+      if (this.breakTime <= 0) {
+        this.stopBreak();
+      }
+    }, 1000);
+  }
+
+  stopBreak(): void {
+    clearInterval(this.breakInterval);
+    this.breakRunning = false;
+    this.time = 10 * 60;
+    this.start();
+  }
+
   get formattedTime(): string {
     const hours = Math.floor(this.time / 3600);
     const minutes = Math.floor((this.time % 3600) / 60);
@@ -91,6 +148,12 @@ export class TimerComponent {
   get formattedTimeoutTime(): string {
     const minutes = Math.floor(this.timeoutTime / 60);
     const seconds = this.timeoutTime % 60;
+    return `${this.pad(minutes)}:${this.pad(seconds)}`;
+  }
+
+  get formattedBreakTime(): string {
+    const minutes = Math.floor(this.breakTime / 60);
+    const seconds = this.breakTime % 60;
     return `${this.pad(minutes)}:${this.pad(seconds)}`;
   }
 

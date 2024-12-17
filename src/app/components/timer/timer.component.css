@@ -1,3 +1,12 @@
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
 .timer-container {
   display: flex;
   flex-direction: column;
@@ -19,6 +28,13 @@
   margin-top: 20px;
 }
 
+.break-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #3578dc;
+  margin-top: 20px;
+}
+
 .timer-buttons button {
   margin: 0 10px;
   background-color: #007bff;
@@ -29,17 +45,7 @@
   background-color: #0056b3;
 }
 
-.laps-container {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.laps-container h3 {
-  font-size: 1.5rem;
-}
-
-.laps-container li {
-  font-size: 1.2rem;
-  padding: 5px 0;
-  color: #555;
+.timer-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
