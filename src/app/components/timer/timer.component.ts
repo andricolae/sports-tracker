@@ -11,12 +11,13 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent {
-  time: number = 10 * 60;
+  time: number = 0;
   interval: any;
-  breakTime: number = 0;
   running: boolean = false;
-  laps: string[] = [];
   selectedSport: string = 'default';
+
+  breakTime: number = 0;
+  laps: string[] = [];
   quarter: number = 1;
   breakInterval: any;
   maxTimeouts: number = 7;
@@ -40,15 +41,29 @@ export class TimerComponent {
 
   updateTimeoutTime(): void {
     this.timeoutTime = this.timeoutDurations[this.selectedSport] || 30;
+
+    if (this.selectedSport === 'Basketball') {
+      this.time = 10 * 60;
+    } else if (this.selectedSport === 'Volleyball' || this.selectedSport === 'Tennis') {
+      this.time = 0;
+    } else {
+      this.time = 0;
+    }
   }
 
   start(): void {
-    if (!this.running && !this.breakRunning && !this.timeoutRunning) {      this.running = true;
+    if (!this.running && !this.breakRunning && !this.timeoutRunning) {
+      this.running = true;
       this.appDataService.setTimerRunning(true);
+
       this.interval = setInterval(() => {
-        this.time--;
-        if (this.time <= 0) {
-          this.endQuarter();
+        if (this.selectedSport === 'Basketball') {
+          this.time--;
+          if (this.time <= 0) {
+            this.endQuarter();
+          }
+        } else {
+          this.time++;
         }
       }, 1000);
     }
@@ -58,8 +73,9 @@ export class TimerComponent {
     if (this.running && this.usedTimeouts < this.maxTimeouts) {
       clearInterval(this.interval);
       this.running = false;
-      this.startTimeout();
       this.usedTimeouts++;
+      this.startTimeout();
+      console.log(this.usedTimeouts);
     }
   }
 
